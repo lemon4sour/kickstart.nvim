@@ -7,6 +7,9 @@ return {
       local lint = require 'lint'
       lint.linters_by_ft = {
         markdown = { 'markdownlint' },
+        luau = { 'selene' },
+        lua = { 'selene' },
+        bash = { 'spellcheck' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,

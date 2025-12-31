@@ -62,7 +62,7 @@ do
   end
 
   -- Toggle
-  vim.keymap.set('n', '<leader>\\', function()
+  vim.keymap.set('n', '<leader>tw', function()
     set_transparent(not transparent_enabled)
-  end, { desc = 'Toggle background transparency' })
+  end, { desc = '[T]oggle [W]indow transparency' })
 end
