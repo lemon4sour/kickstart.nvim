@@ -32,7 +32,7 @@ return {
           end
         end, { desc = 'Jump to previous git [c]hange' })
 
-        -- Actions
+        -- A tions
         -- visual mode
         map('v', '<leader>hs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }

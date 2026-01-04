@@ -45,8 +45,6 @@ return {
     vim.keymap.set('n', '<Leader>de', "<cmd>lua require'dap'.terminate()<CR>", { desc = 'Debugger reset' })
     vim.keymap.set('n', '<Leader>dr', "<cmd>lua require'dap'.run_last()<CR>", { desc = 'Debugger run last' })
     vim.keymap.set('n', '<Leader>dp', "<cmd>lua require'dapui'.toggle()<CR>", { desc = 'Debugger see last session' })
-    -- rustaceanvim
-    vim.keymap.set('n', '<Leader>dt', "<cmd>lua vim.cmd('RustLsp testables')<CR>", { desc = 'Debugger testables' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
