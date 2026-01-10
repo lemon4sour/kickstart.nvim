@@ -45,6 +45,7 @@ return {
     vim.keymap.set('n', '<Leader>de', "<cmd>lua require'dap'.terminate()<CR>", { desc = 'Debugger reset' })
     vim.keymap.set('n', '<Leader>dr', "<cmd>lua require'dap'.run_last()<CR>", { desc = 'Debugger run last' })
     vim.keymap.set('n', '<Leader>dp', "<cmd>lua require'dapui'.toggle()<CR>", { desc = 'Debugger see last session' })
+    vim.keymap.set('n', '<Leader>dq', "<cmd>lua require'dapui'.close()<CR>", { desc = 'Debugger quit' })
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
@@ -66,6 +67,9 @@ return {
           disconnect = '⏏',
         },
       },
+      console = {
+        open_on_run = true,
+      },
     }
 
     -- Change breakpoint icons
@@ -77,9 +81,36 @@ return {
     for type, icon in pairs(breakpoint_icons) do
       local tp = 'Dap' .. type
       local hl = (type == 'Stopped') and 'DapStop' or 'DapBreak'
-      vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     end
 
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
+    dap.listeners.after.event_initialized['dapui_focus_console'] = function()
+      dapui.open()
+
+      vim.schedule(function()
+        for _, win in ipairs(vim.api.nvim_list_wins()) do
+          local buf = vim.api.nvim_win_get_buf(win)
+          if vim.bo[buf].filetype == 'dapui_console' then
+            vim.api.nvim_set_current_win(win)
+            break
+          end
+        end
+      end)
+    end
+
+    -- ONE global autocmd
+    vim.api.nvim_create_autocmd('WinClosed', {
+      callback = function(args)
+        local winid = tonumber(args.match)
+        if not winid or not vim.api.nvim_win_is_valid(winid) then
+          return
+        end
+
+        local buf = vim.api.nvim_win_get_buf(winid)
+        if vim.bo[buf].filetype == 'dapui_console' then
+          dap.terminate()
+          dapui.close()
+        end
+      end,
+    })
   end,
 }

@@ -6,6 +6,11 @@ vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.shiftwidth = 2
 
+vim.o.foldcolumn = '1'
+vim.o.foldlevel = 50
+vim.o.foldlevelstart = 50
+vim.o.foldenable = true
+
 vim.g.have_nerd_font = true
 
 vim.o.number = true
