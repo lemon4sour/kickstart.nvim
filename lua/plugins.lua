@@ -104,4 +104,7 @@ return {
       end, { desc = 'Peek Fold' })
     end,
   },
+  {
+    'github/copilot.vim',
+  },
 }
