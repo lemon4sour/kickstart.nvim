@@ -27,8 +27,12 @@ return { -- Autoformat
     end,
     formatters_by_ft = {
       lua = { 'stylua' },
-
       luau = { 'stylua' },
+      astro = { 'prettier' },
+      json = { 'prettier' },
+      javascript = { 'prettier' },
+      typescript = { 'prettier' },
+      css = { 'prettier' },
     },
   },
 }

@@ -116,6 +116,8 @@ return {
           },
         },
       },
+
+      astro = {},
       --rust_analyzer = {
       --  settings = {
       --    ['rust-analyzer'] = {
@@ -147,6 +149,7 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       'stylua',
+      'astro',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
     for server_name, server_config in pairs(servers) do

@@ -21,6 +21,11 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Map <leader><Tab> to switch to the next window
+vim.api.nvim_set_keymap('n', '<leader><Tab>', '<C-w>w', { noremap = true, silent = true, desc = 'Switch to next window' })
+
+-- Map <leader><S-Tab> to switch to the previous window
+vim.api.nvim_set_keymap('n', '<leader><S-Tab>', '<C-w>W', { noremap = true, silent = true, desc = 'Switch to previous window' })
 do
   vim.opt.termguicolors = true
 
@@ -65,4 +70,9 @@ do
   vim.keymap.set('n', '<leader>tw', function()
     set_transparent(not transparent_enabled)
   end, { desc = '[T]oggle [W]indow transparency' })
+  vim.keymap.set('n', '<leader>b', function()
+    vim.cmd 'belowright 10split' -- bottom split with height 10
+    vim.cmd 'terminal' -- open terminal
+    vim.cmd 'startinsert' -- enter insert mode
+  end, { noremap = true, silent = true, desc = 'Open Terminal' })
 end

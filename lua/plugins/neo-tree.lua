@@ -16,6 +16,7 @@ return {
   opts = {
     close_if_last_window = true,
     filesystem = {
+      use_libuv_file_watcher = true,
       window = {
         mappings = {
           ['\\'] = 'close_window',
