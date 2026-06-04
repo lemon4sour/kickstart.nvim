@@ -107,9 +107,20 @@ return {
   {
     'github/copilot.vim',
     enabled = true,
-    config = function()
+    init = function()
+      vim.g.copilot_filetypes = {
+        ['*'] = false,
+      }
+
       vim.g.copilot_no_tab_map = true
+    end,
+    config = function()
       vim.keymap.set('i', '<C-y>', 'copilot#Accept("<CR>")', {
+        expr = true,
+        silent = true,
+        replace_keycodes = false,
+      })
+      vim.keymap.set('i', '<C-l>', 'copilot#Suggest()', {
         expr = true,
         silent = true,
         replace_keycodes = false,
@@ -118,5 +129,10 @@ return {
   },
   {
     'vyfor/cord.nvim',
+  },
+  {
+    'OXY2DEV/markview.nvim',
+    lazy = false,
+    dependencies = { 'saghen/blink.cmp' },
   },
 }

@@ -33,6 +33,7 @@ return { -- Autoformat
       javascript = { 'prettier' },
       typescript = { 'prettier' },
       css = { 'prettier' },
+      markdown = { 'prettier', stop_after_first = true },
     },
   },
 }
