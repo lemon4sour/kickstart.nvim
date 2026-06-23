@@ -70,9 +70,9 @@ do
   vim.keymap.set('n', '<leader>tw', function()
     set_transparent(not transparent_enabled)
   end, { desc = '[T]oggle [W]indow transparency' })
-  vim.keymap.set('n', '<leader>b', function()
+  vim.keymap.set('n', '<leader>bt', function()
     vim.cmd 'belowright 10split' -- bottom split with height 10
     vim.cmd 'terminal' -- open terminal
     vim.cmd 'startinsert' -- enter insert mode
-  end, { noremap = true, silent = true, desc = 'Open Terminal' })
+  end, { noremap = true, silent = true, desc = 'Open Quick Terminal' })
 end

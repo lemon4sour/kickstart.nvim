@@ -61,6 +61,14 @@ return {
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
+      require('mini.bufremove').setup()
+      vim.keymap.set('n', '<leader>bd', function()
+        MiniBufremove.delete(0, false)
+      end, { desc = 'Delete Buffer' })
+
+      vim.keymap.set('n', '<leader>bD', function()
+        MiniBufremove.delete(0, true)
+      end, { desc = 'Force Delete Buffer' })
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
       --]]
@@ -120,7 +128,7 @@ return {
         silent = true,
         replace_keycodes = false,
       })
-      vim.keymap.set('i', '<C-l>', 'copilot#Suggest()', {
+      vim.keymap.set('i', '<C-]>', 'copilot#Suggest()', {
         expr = true,
         silent = true,
         replace_keycodes = false,
@@ -134,5 +142,22 @@ return {
     'OXY2DEV/markview.nvim',
     lazy = false,
     dependencies = { 'saghen/blink.cmp' },
+  },
+  {
+    'romgrk/barbar.nvim',
+    dependencies = {
+      'lewis6991/gitsigns.nvim', -- OPTIONAL: for git status
+      'nvim-tree/nvim-web-devicons', -- OPTIONAL: for file icons
+    },
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
+    opts = {
+      -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+      -- animation = true,
+      -- insert_at_start = true,
+      -- …etc.
+    },
+    version = '^1.0.0', -- optional: only update when a new 1.x version is released
   },
 }
